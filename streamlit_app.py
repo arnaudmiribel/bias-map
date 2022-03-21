@@ -41,7 +41,7 @@ text_input = st.text_input(
     label="Type in a sentence. Use * as a country placeholder", value="This movie was filmed in *"
 )
 
-st.write("Or use other examples:")
+st.write("Or use one of these examples:")
 columns = st.columns(3)
 book = columns[0].button("The book is written in *")
 partner = columns[1].button("My partner is from *")
@@ -82,3 +82,6 @@ if text_input:
         )
 
         st.plotly_chart(bias_map)
+
+        st.write("All data (sorted by increasing 'positive'-ness probability)")
+        st.table(countries_df.sort_values(by="Positive class probability", increasing=False))
