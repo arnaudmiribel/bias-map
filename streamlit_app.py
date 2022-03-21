@@ -6,6 +6,7 @@ import streamlit as st
 from tensorflow.keras.utils import get_file
 from transformers import pipeline
 
+st.set_page_config(layout="wide", title="🗺️ Bias map")
 
 @st.experimental_singleton
 def get_countries_json():
@@ -17,6 +18,11 @@ def get_countries_json():
 @st.experimental_singleton
 def get_classifier():
     return pipeline("sentiment-analysis")
+
+
+@st.experimental_memo
+def predict(reviews):
+    return classifier(reviews)
 
 
 def result_to_positive_class_probability(result):
@@ -51,26 +57,28 @@ if candidate:
 assert "*" in text_input, "Use the placeholder!"
 
 if text_input:
-    reviews = []
-    country_names = []
-    for feature in countries_json["features"]:
-        country_name = feature["properties"]["ADMIN"]
-        country_names.append(country_name)
-        reviews.append(text_input.replace("*", country_name))
 
-    results = classifier(reviews)
-    probas = map(result_to_positive_class_probability, results)
+    with st.spinner("Computing probabilities..."):
+        reviews = []
+        country_names = []
+        for feature in countries_json["features"]:
+            country_name = feature["properties"]["ADMIN"]
+            country_names.append(country_name)
+            reviews.append(text_input.replace("*", country_name))
 
-    countries_df = pd.DataFrame(
-        {"Country": country_names, "Positive class probability": probas}
-    )
+        results = predict(reviews)
+        probas = map(result_to_positive_class_probability, results)
 
-    bias_map = px.choropleth(
-        countries_df,
-        locations="Country",
-        featureidkey="properties.ADMIN",
-        geojson=countries_json,
-        color="Positive class probability",
-    )
+        countries_df = pd.DataFrame(
+            {"Country": country_names, "Positive class probability": probas}
+        )
 
-    st.plotly_chart(bias_map)
+        bias_map = px.choropleth(
+            countries_df,
+            locations="Country",
+            featureidkey="properties.ADMIN",
+            geojson=countries_json,
+            color="Positive class probability",
+        )
+
+        st.plotly_chart(bias_map)
