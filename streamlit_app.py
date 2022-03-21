@@ -1,4 +1,6 @@
 import json
+import re
+import urllib
 
 import pandas as pd
 import plotly.express as px
@@ -7,6 +9,40 @@ from tensorflow.keras.utils import get_file
 from transformers import pipeline
 
 st.set_page_config(layout="centered", page_icon="🗺️", page_title="Bias map")
+
+def tweet(text_input) -> str:
+    return f"""Just generated an interesting bias map. Here's how DistilBert (a famous sentiment analysis
+    model) positive-ness distribution scores for sentences based on the "{text_input}" sentence!"""
+
+def tweet_button(tweet_html: str) -> str:
+    """Generate tweet button html based on tweet html text."""
+
+    # Custom CSS
+    st.write("""<style>
+    #twitter-link {
+        text-decoration: none;
+    }
+
+    #twitter-button {
+        background-color: #1da1f2;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+        text-decoration: none;
+        margin-bottom: 15px;
+    }
+    
+    """, unsafe_allow_html=True)
+
+    link = re.sub("<.*?>", "", tweet_html)  # remove html tags
+    link = link.strip()  # remove blank lines at start/end
+    link = urllib.parse.quote(link)  # encode for url
+    link = "https://twitter.com/intent/tweet?text=" + link
+    tweet_button_html = (
+        f'<a id="twitter-link" href="{link}" target="_blank" rel="noopener '
+        f'noreferrer"><p align="center" id="twitter-button">🐦 Tweet it!</p></a>'
+    )
+    return tweet_button_html
 
 @st.experimental_memo
 def get_countries_json():
@@ -86,6 +122,9 @@ if text_input:
         )
 
         st.plotly_chart(bias_map)
+        st.write("Share")
+        tweet_html = tweet(text_input)
+        tweet_button(tweet_html)
 
         st.write("All data (sorted by ascending 'positive'-ness probability)")
         st.dataframe(countries_df.sort_values(by="Positive class probability", ascending=True), height=350,)
