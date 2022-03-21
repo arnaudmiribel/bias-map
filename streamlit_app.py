@@ -38,7 +38,7 @@ def tweet_button(tweet_html: str) -> str:
     link = "https://twitter.com/intent/tweet?text=" + link
     tweet_button_html = (
         f'<a id="twitter-link" href="{link}" target="_blank" rel="noopener '
-        f'noreferrer"><p align="center" id="twitter-button">🐦 Tweet it!</p></a>'
+        f'noreferrer"><p align="center" id="twitter-button">🐦 Tweet about it!</p></a>'
     )
     return tweet_button_html
 
