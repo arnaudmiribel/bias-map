@@ -89,6 +89,8 @@ if text_input:
             geojson=countries_json,
             color="Positive class probability",
         )
+        bias_map.update_traces(marker_line_width=0)
+
 
         st.plotly_chart(bias_map)
 
