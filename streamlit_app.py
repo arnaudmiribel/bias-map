@@ -31,7 +31,7 @@ def tweet_button(tweet_html: str) -> str:
         text-decoration: none;
         margin-bottom: 15px;
     }
-    
+    </style>
     """, unsafe_allow_html=True)
 
     link = re.sub("<.*?>", "", tweet_html)  # remove html tags
