@@ -1,0 +1,60 @@
+[data-testid="stDecoration"] {
+  background: linear-gradient(90deg, #1da1f2, rgb(255, 253, 128));
+}
+
+.reportview-container .main .block-container {
+  max-width: 440px;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  line-height: 1.25;
+  padding-bottom: 0.7rem;
+}
+
+#progress-text {
+  font-size: 0.8rem;
+}
+
+.stProgress > div > div > div > div {
+  background-color: #1da1f2;
+}
+
+#tweet {
+  padding: 20px;
+  border: 1px solid #1da1f2;
+  border-radius: 0.25rem;
+}
+
+#twitter-link {
+  text-decoration: none;
+}
+
+#twitter-button {
+  background-color: #1da1f2;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.bk-root .bk-btn-default {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+div .bk-root .bk {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+#fineprint {
+  color: white;
+  font-size: 6pt;
+  margin-top: 25px;
+}
