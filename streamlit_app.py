@@ -59,7 +59,9 @@ if partner:
 if candidate:
     text_input = "Our next candidate is from *"
 
-assert "*" in text_input, "Use the placeholder!"
+if "*" not in text_input:
+    st.exception("Your input sentence must contain a `*` which will be used as the country placeholder.")
+    st.stop()
 
 if text_input:
     st.caption("Output:")
