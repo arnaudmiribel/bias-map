@@ -84,4 +84,4 @@ if text_input:
         st.plotly_chart(bias_map)
 
         st.write("All data (sorted by ascending 'positive'-ness probability)")
-        st.dataframe(countries_df.sort_values(by="Positive class probability", ascending=False), height=350,)
+        st.dataframe(countries_df.sort_values(by="Positive class probability", ascending=True), height=350,)
