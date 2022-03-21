@@ -47,6 +47,8 @@ book = columns[0].button("The book is written in *")
 partner = columns[1].button("My partner is from *")
 candidate = columns[2].button("Our next candidate is from *")
 
+st.write("---")
+
 if book:
     text_input = "The book is written in *"
 if partner:
@@ -57,6 +59,7 @@ if candidate:
 assert "*" in text_input, "Use the placeholder!"
 
 if text_input:
+    st.caption("Output:")
 
     st.write("### " + text_input)
     with st.spinner("Computing probabilities..."):
