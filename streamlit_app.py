@@ -8,7 +8,7 @@ from transformers import pipeline
 
 st.set_page_config(layout="centered", page_title="🗺️ Bias map")
 
-@st.experimental_singleton
+@st.experimental_memo
 def get_countries_json():
     url = "https://datahub.io/core/geo-countries/r/countries.geojson"
     path = get_file("countries.geojson", url)
@@ -20,7 +20,7 @@ def get_classifier():
     return pipeline("sentiment-analysis")
 
 
-@st.experimental_memo
+@st.experimental_memo(show_spinner=False)
 def predict(reviews):
     return classifier(reviews)
 
