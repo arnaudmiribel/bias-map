@@ -66,7 +66,7 @@ if "*" not in text_input:
 if text_input:
     st.caption("Output:")
 
-    st.write("### " + text_input)
+    st.write(f"""Bias map for input: _"{text_input}"_:""")
     with st.spinner("Computing probabilities..."):
         reviews = []
         country_names = []
@@ -94,5 +94,5 @@ if text_input:
 
         st.plotly_chart(bias_map)
 
-        st.write("All data (sorted by ascending 'positive'-ness probability)")
+        st.write("Data (sorted by ascending 'positive'-ness probability):")
         st.dataframe(countries_df.sort_values(by="Positive class probability", ascending=True), height=350,)
