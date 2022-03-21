@@ -58,6 +58,7 @@ assert "*" in text_input, "Use the placeholder!"
 
 if text_input:
 
+    st.write("### " + text_input)
     with st.spinner("Computing probabilities..."):
         reviews = []
         country_names = []
