@@ -6,7 +6,7 @@ import streamlit as st
 from tensorflow.keras.utils import get_file
 from transformers import pipeline
 
-st.set_page_config(layout="centered", page_title="🗺️ Bias map")
+st.set_page_config(layout="centered", page_icon="🗺️", page_title="Bias map")
 
 @st.experimental_memo
 def get_countries_json():
