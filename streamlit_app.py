@@ -8,6 +8,7 @@ import streamlit as st
 from tensorflow.keras.utils import get_file
 from transformers import pipeline
 
+st.set_page_config(layout="centered", page_icon="🗺️", page_title="Bias map")
 
 def local_css(file_name: str) -> None:
     """Loads a local .css file into streamlit."""
@@ -16,7 +17,6 @@ def local_css(file_name: str) -> None:
     
 local_css("local_styles.css")
 
-st.set_page_config(layout="centered", page_icon="🗺️", page_title="Bias map")
 
 
 def tweet(text_input) -> str:
