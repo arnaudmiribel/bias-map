@@ -38,7 +38,7 @@ Simply input a sentence which would countain a country name (using `*` as a coun
 how the model predictions vary for all possible countries.""")
 
 text_input = st.text_input(
-    label="Type in a sentence. Use '*' as a country placeholder", value="This movie was filmed in *"
+    label="Type in a sentence. Use * as a country placeholder", value="This movie was filmed in *"
 )
 
 st.write("Or use other examples:")
