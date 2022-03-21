@@ -8,7 +8,16 @@ import streamlit as st
 from tensorflow.keras.utils import get_file
 from transformers import pipeline
 
+
+def local_css(file_name: str) -> None:
+    """Loads a local .css file into streamlit."""
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    
+local_css("local_styles.css")
+
 st.set_page_config(layout="centered", page_icon="🗺️", page_title="Bias map")
+
 
 def tweet(text_input) -> str:
     return f"""Just generated an interesting bias map. Here's how DistilBert (a famous sentiment analysis
