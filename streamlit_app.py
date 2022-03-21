@@ -17,31 +17,20 @@ def local_css(file_name: str) -> None:
     
 local_css("local_styles.css")
 
-
+TWEET_TEMPLATE = """
+<p id="tweet">
+Just generated an interesting bias map. Here's how DistilBert (a famous sentiment analysis 
+model) positive-ness distribution scores vary across countries for this sentence pattern: "{text_input}".
+<br><br>
+Try your own sentence 👉 <a href="https://share.streamlit.io/arnaudmiribel/bias-map/main">here</a> | Built by <a href="https://twitter.com/arnaudmiribel">@arnaudmiribel</a> w/ <a href="https://twitter.com/streamlit">@streamlit</a> 
+</p>
+"""
 
 def tweet(text_input) -> str:
-    return f"""Just generated an interesting bias map. Here's how DistilBert (a famous sentiment analysis
-    model) positive-ness distribution scores for sentences based on the "{text_input}" sentence!"""
+    return TWEET_TEMPLATE.format(text_input=text_input)
 
 def tweet_button(tweet_html: str) -> str:
     """Generate tweet button html based on tweet html text."""
-
-    # Custom CSS
-    st.write("""<style>
-    #twitter-link {
-        text-decoration: none;
-    }
-
-    #twitter-button {
-        background-color: #1da1f2;
-        padding: 5px;
-        border-radius: 5px;
-        color: white;
-        text-decoration: none;
-        margin-bottom: 15px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
 
     link = re.sub("<.*?>", "", tweet_html)  # remove html tags
     link = link.strip()  # remove blank lines at start/end

@@ -31,6 +31,8 @@ h1 {
 
 #twitter-link {
   text-decoration: none;
+  color: white;
+  width: 200px;
 }
 
 #twitter-button {
