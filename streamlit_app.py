@@ -46,19 +46,6 @@ text_input = st.text_input(
 
 st.write("---")
 
-# st.write("Or use one of these examples:")
-# columns = st.columns(3)
-# book = columns[0].button("The book is written in *")
-# partner = columns[1].button("My partner is from *")
-# candidate = columns[2].button("Our next candidate is from *")
-
-# if book:
-#     text_input = "The book is written in *"
-# if partner:
-#     text_input = "My partner is from *"
-# if candidate:
-#     text_input = "Our next candidate is from *"
-
 if "*" not in text_input:
     st.error("Your input sentence must contain a `*` which will be used as the country placeholder.")
     st.stop()
